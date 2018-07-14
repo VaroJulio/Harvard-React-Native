@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TODO App</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container center">
+      <h1 class="center title">My TODO App</h1>
+      <div class="flow-right controls">
+        <span><h3>Item count: <span id="item-count">0</span></h3></span>
+        <span><h3>Unchecked count: <span id="unchecked-count">0</span></h3></span>
+      </div>
+      <!--<button class="button center" onClick="newTodo()">New TODO</button>-->
+      <!-- Button to Open the Modal -->
+      <button type="button" class="btn btn-primary center" data-toggle="modal" data-target="#myModal" style="width: 10%">
+          New TODO
+        </button>
+      <ul id="todo-list" class="todo-list"></ul>
+
+      <!-- The Modal -->
+      <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Add TODO</h4>
+              <button type="button" class="close" data-dismiss="modal" onclick="resetInputText()">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <h6 id="instruction"></h6>
+              <input id="inpTxt" type="text" class="form-control" width=100%>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-info" data-dismiss="modal" onclick="newTodo()">Submit</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="resetInputText()">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
