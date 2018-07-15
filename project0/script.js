@@ -10,7 +10,10 @@ const itemCountSpan = document.getElementById('item-count');
 const uncheckedCountSpan = document.getElementById('unchecked-count');
 const inputMessage = "Write the name of the activity for add to the list, please!";
 const defaultInputMessage = "Unknow activity";
+const deleteMessage = "Are you sure you want to delete this activity?"
 var instructionText = document.getElementById("instruction").textContent = inputMessage;
+var deleteText = document.getElementById("delete").textContent = deleteMessage;
+var objectDelete = null;
 document.getElementById("inpTxt").value= defaultInputMessage;
 var itemCount = 0, uncheckedCount = 0;
 
@@ -49,9 +52,11 @@ function addCheckBox(){
 function addDeleteButton(){
   let deleteButton = document.createElement("button");
   deleteButton.setAttribute("type","button");
+  deleteButton.setAttribute("data-toggle","modal");
+  deleteButton.setAttribute("data-target","#myModalDelete");
   deleteButton.classList.add("close");
-  //deleteButton.setAttribute("class",classNames.TODO_DELETE);
   deleteButton.textContent = "x";
+  deleteButton.onclick = getObjectToDelete;
   return deleteButton;
 }
 
@@ -67,4 +72,27 @@ function updateUncheckedCount(e){
     uncheckedCount+=1;
   }
   uncheckedCountSpan.textContent = uncheckedCount.toString();
+}
+
+function removeToDo(objectDelete){
+  if(objectDelete != undefined && objectDelete != null){
+    list.removeChild(objectDelete);
+    updateCountersDelete(objectDelete);
+  }
+  else
+    console.log("Error: Can´t identificate the object for delete");
+}
+
+function getObjectToDelete(e){
+  objectDelete = e.target.parentElement;
+}
+
+function updateCountersDelete(objectDelete){
+  let estadoCheckObject = objectDelete.querySelector("input").checked;
+  if (!estadoCheckObject){
+    uncheckedCount-=1;
+    uncheckedCountSpan.textContent = uncheckedCount.toString();
+  }
+  itemCount-=1;
+  itemCountSpan.textContent = itemCount.toString();
 }
